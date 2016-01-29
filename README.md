@@ -21,7 +21,7 @@ source data.
   lines based on the digital elevation models (DEMs) downloaded above.
 * Install mapserver and required font
   - RedHat/Fedora: `sudo dnf install mapserver gnu-free-sans-fonts`
-  - Debian/Ubuntu: `sudo apt-get install mapserver-bin`
+  - Debian/Ubuntu: `sudo apt-get install mapserver-bin ttf-freefont`
 * Change into this project directory and build the map: `make`
 
 
