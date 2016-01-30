@@ -4,7 +4,8 @@ MAP
   IMAGETYPE      JPEG
   SIZE           2100 1600
   IMAGECOLOR     255 255 255
-  FONTSET         "fonts.list"
+  FONTSET        "fonts.list"
+  EXTENT         -79.84496 39.61941 -79.76192 39.66164
 
   OUTPUTFORMAT
     NAME "aggjpg24"
@@ -303,6 +304,21 @@ MAP
     CLASS
       COLOR 0 0 255
       NAME "Water"
+      LABEL
+        ANGLE AUTO
+        TYPE TRUETYPE
+        FONT opensymbol
+        ANTIALIAS TRUE
+        POSITION AUTO
+        PARTIALS TRUE
+        MINDISTANCE 500
+        BUFFER 20
+        MINSIZE 4
+        OUTLINECOLOR 255 255 255
+        OUTLINEWIDTH 3
+        COLOR 0 0 0
+        SIZE 12
+      END
     END
   END
 
@@ -473,20 +489,17 @@ MAP
       SIZE 4
       LABEL
         ANGLE FOLLOW
-        TYPE TRUETYPE
         REPEATDISTANCE 150
-        PRIORITY 10
-        BUFFER 4
-        MINSIZE 4
+        TYPE TRUETYPE
         FONT opensymbol
-        MINFEATURESIZE 50
-        MINDISTANCE 50
         ANTIALIAS TRUE
+        POSITION AUTO
         PARTIALS TRUE
+        MINSIZE 4
         OUTLINECOLOR 255 255 255
         OUTLINEWIDTH 3
         COLOR 0 0 0
-        SIZE 11
+        SIZE 10
       END
     END
   END
@@ -500,7 +513,7 @@ MAP
     CLASS
       COLOR 0 0 0
       SYMBOL "point"
-      SIZE 6
+      SIZE 5
       LABEL
         ANGLE 45
         TYPE TRUETYPE
@@ -509,12 +522,12 @@ MAP
         POSITION AUTO
         PARTIALS TRUE
         MINDISTANCE 50
-        BUFFER 4
+        BUFFER 5
         MINSIZE 4
         OUTLINECOLOR 255 255 255
         OUTLINEWIDTH 3
         COLOR 0 0 0
-        SIZE 11
+        SIZE 10
       END
     END
   END
