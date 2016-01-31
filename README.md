@@ -1,13 +1,21 @@
-# coopers-rock-trails
+# Monongalia and Preston County, WV Trail Maps
 
-SHP file for a large number of the trails at Coopers Rock State Forest
-in Monongalia and Preston Counties, WV. This data was collected over
-several years while running and mountain biking on the extensive trail
-system in the forest. [Quantum GIS](qgis.org) was used to clean up the
-source data.
+This repository contains SHP files and maps generated using
+[Mapserver](http://mapserver.org/) for some select trails in Monongalia
+and Preston County, WV. This data was collected over several years while
+running and mountain biking in the area. [Quantum GIS](qgis.org) was
+used to clean up the source data.
+
+
+## Maps
+
+![Coopers Rock map](coopers-rock-state-forest/coopers-rock-map.jpg?raw=1 "Coopers Rock map")
 
 
 ## How to compile
+
+You can build these maps with the following procedure if you have other
+data that you'd like to add to the map:
 
 * Clone the [postgis-data-importer](https://github.com/masneyb/postgis-data-importer)
   project.
@@ -23,10 +31,6 @@ source data.
 * Install mapserver and required font
   - RedHat/Fedora: `sudo dnf install mapserver gnu-free-sans-fonts`
   - Debian/Ubuntu: `sudo apt-get install mapserver-bin ttf-freefont`
-* Change into this project directory and build the map: `make`
-
-
-## Map
-
-![Coopers Rock map](coopers-rock-map.jpg?raw=1 "Coopers Rock map")
+* Change into the relevant subdirectory in this project and build the map:
+  `make`.
 
