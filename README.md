@@ -7,7 +7,7 @@ running and mountain biking in the area. [Quantum GIS](qgis.org) was
 used to clean up the source data.
 
 
-## Maps
+## Coopers Rock State Forest map
 
 ![Coopers Rock map](coopers-rock-state-forest/coopers-rock-map.jpg?raw=1 "Coopers Rock map")
 
