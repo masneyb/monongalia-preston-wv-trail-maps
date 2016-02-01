@@ -5,7 +5,6 @@ MAP
   SIZE           2100 1600
   IMAGECOLOR     255 255 255
   FONTSET        "fonts.list"
-  EXTENT         -79.84496 39.61941 -79.76192 39.66164
 
   OUTPUTFORMAT
     NAME "aggjpg24"

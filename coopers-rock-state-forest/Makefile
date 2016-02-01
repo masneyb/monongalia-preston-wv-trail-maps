@@ -13,7 +13,7 @@ DBNAME=wvgis
 map:
 	cat coopers.map.in | sed s/__DBNAME__/"${DBNAME}"/ > coopers.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m coopers.map -o coopers-rock-map.jpg
+	shp2img -m coopers.map -e -79.84496 39.61941 -79.76192 39.66164 -o coopers-rock-south-map.jpg
 
 clean:
 	rm -f coopers.map fonts.list
