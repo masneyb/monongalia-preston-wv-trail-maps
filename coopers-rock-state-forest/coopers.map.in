@@ -14,18 +14,10 @@ MAP
     EXTENSION "jpg"
   END
 
-  # http://www.mapserver.org/mapfile/symbology/construction.html
   SYMBOL
     NAME "point"
     TYPE ELLIPSE
     POINTS 1 1 END
-    FILLED TRUE
-  END
-
-  SYMBOL
-    NAME "railway"
-    TYPE ellipse
-    POINTS 2 2 END
     FILLED TRUE
   END
 
@@ -242,8 +234,6 @@ MAP
     CLASS
       COLOR 147 112 219
       NAME "County Boundaries"
-      #SYMBOL "point"
-      #SIZE 3
     END
   END
 
@@ -255,8 +245,11 @@ MAP
     STATUS ON
     TYPE LINE
     CLASS
-      COLOR 211 211 211
       NAME "20' Contour Lines"
+      STYLE
+        COLOR 211 211 211
+        WIDTH 1
+      END
       MAXSCALE 10000.00
     END
   END
@@ -270,10 +263,11 @@ MAP
     TYPE LINE
     LABELITEM "ele"
     CLASS
-      COLOR 169 169 169
+      STYLE
+        COLOR 169 169 169
+        WIDTH 2
+      END
       NAME "100' Contour Lines"
-      SYMBOL "point"
-      SIZE 2
       MAXSCALE 60000.00
       LABEL
         ANGLE AUTO
@@ -330,9 +324,10 @@ MAP
     TYPE LINE
     LABELITEM "major1"
     CLASS
-      COLOR 0 0 255
-      SYMBOL "point"
-      SIZE 2
+      STYLE
+        COLOR 0 0 255
+        WIDTH 1
+      END
       MAXSCALE 60000.00
       LABEL
         ANGLE AUTO
@@ -360,7 +355,10 @@ MAP
     STATUS ON
     TYPE LINE
     CLASS
-      COLOR 169 169 169
+      STYLE
+        COLOR 169 169 169
+        WIDTH 2
+      END
       NAME "Major Power Lines"
       MAXSCALE 60000.00
     END
@@ -374,10 +372,12 @@ MAP
     STATUS OFF
     TYPE LINE
     CLASS
-      COLOR 0 0 0
+      # FIXME - add railroad pattern
+      STYLE
+        COLOR 0 0 0
+        WIDTH 2
+      END
       NAME "Rails"
-      SYMBOL "railway"
-      SIZE 1
       MAXSCALE 60000.00
     END
   END
@@ -391,10 +391,11 @@ MAP
     TYPE LINE
     LABELITEM "label"
     CLASS
-      COLOR 0 0 0
+      STYLE
+        COLOR 0 0 0
+        WIDTH 2
+      END
       NAME "Roads"
-      SYMBOL "point"
-      SIZE 3
       MAXSCALE 60000.00
       LABEL
         ANGLE AUTO
@@ -423,10 +424,11 @@ MAP
     TYPE LINE
     LABELITEM "sign1"
     CLASS
-      COLOR 0 0 0
       NAME "US Highways"
-      SYMBOL "point"
-      SIZE 5
+      STYLE
+        COLOR 0 0 0
+        WIDTH 6
+      END
       LABEL
         ANGLE AUTO
         TYPE TRUETYPE
@@ -454,10 +456,11 @@ MAP
     TYPE LINE
     LABELITEM "sign1"
     CLASS
-      COLOR 0 0 0
+      STYLE
+        COLOR 0 0 0
+        WIDTH 8
+      END
       NAME "Interstates"
-      SYMBOL "point"
-      SIZE 6
       LABEL
         ANGLE AUTO
         TYPE TRUETYPE
