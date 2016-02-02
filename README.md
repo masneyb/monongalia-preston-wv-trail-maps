@@ -34,14 +34,3 @@ data that you'd like to add to the map:
 * Change into the relevant subdirectory in this project and build the map:
   `make`.
 
-
-## Coming soon
-
-The following data will be added to this repository once I finish cleaning up
-the source data:
-
-- Bakers Ridge Trails
-- White Park Trails
-- Snake Hill WMA Trails
-- Various logging roads in the Cheat Canyon
-
