@@ -1,6 +1,6 @@
 # Monongalia and Preston County, WV Trail Maps
 
-This repository contains SHP files and maps generated using
+This repository contains SHP files, GPX files, and maps generated using
 [Mapserver](http://mapserver.org/) for some select trails in Monongalia
 and Preston County, WV. This data was collected over several years while
 running and mountain biking in the area. [Quantum GIS](qgis.org) was
@@ -33,4 +33,4 @@ data that you'd like to add to the map:
   - Debian/Ubuntu: `sudo apt-get install mapserver-bin ttf-freefont`
 * Change into the relevant subdirectory in this project and build the map:
   `make`.
-
+* Note: The GPX files are automatically generated from the SHP files.

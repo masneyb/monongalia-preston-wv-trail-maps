@@ -12,7 +12,7 @@ DBNAME=wvgis
 
 .PHONY: map gpx clean
 
-all: map
+all: map gpx
 
 map:
 	cat coopers.map.in | sed s/__DBNAME__/"${DBNAME}"/ > coopers.map
@@ -20,8 +20,8 @@ map:
 	shp2img -m coopers.map -e -79.84496 39.61941 -79.76192 39.66164 -o coopers-rock-south-map.jpg
 
 gpx:
-	# FIXME - this is currently broken. Need to clean up the source data a little more.
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_trails.gpx shp/coopers_rock_trails.shp
+	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_places.gpx shp/coopers_rock_places.shp
 
 clean:
 	rm -f coopers.map fonts.list

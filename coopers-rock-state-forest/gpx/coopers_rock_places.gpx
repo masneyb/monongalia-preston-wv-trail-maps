@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GDAL 2.0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata><bounds minlat="39.621224564466182" minlon="-79.839423999999994" maxlat="39.658317699999998" maxlon="-79.784708600000002"/></metadata>                
+<wpt lat="39.6527821" lon="-79.8241722">
+  <name>Restroom</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6397883" lon="-79.818772">
+  <name>Restroom</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6398198" lon="-79.8182217">
+  <name>Shelter #3</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6379519" lon="-79.8156668">
+  <name>Consession Stand</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6488319" lon="-79.8178984">
+  <name>Henry Clay Iron Furnace</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6511491" lon="-79.8177152">
+  <name>Roof Rocks</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-07</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6583177" lon="-79.839424">
+  <name>Army Rock</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-11</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.655937981801685" lon="-79.786595269309288">
+  <name>Parking</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.641898605615893" lon="-79.794229123669993">
+  <name>Parking</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.639106712079453" lon="-79.791748861158098">
+  <name>Campground</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.636729681288344" lon="-79.801473720536762">
+  <name>Parking</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.621224564466182" lon="-79.798991788929868">
+  <name>Raven Rock</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.636383343762091" lon="-79.816022362263666">
+  <name>Overlook</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.641573498611635" lon="-79.824033146010777">
+  <name>Rock City Shelter</name>
+  <extensions>
+    <ogr:COMMENT>2009-03-12</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6457274" lon="-79.7920388">
+  <name>Parking</name>
+  <extensions>
+    <ogr:COMMENT>2016-02-04</ogr:COMMENT>
+  </extensions>
+</wpt>
+<wpt lat="39.6494647" lon="-79.7847086">
+  <name>Parking</name>
+  <extensions>
+    <ogr:COMMENT>2016-02-04</ogr:COMMENT>
+  </extensions>
+</wpt>
+</gpx>
