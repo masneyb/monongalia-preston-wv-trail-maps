@@ -20,6 +20,7 @@ map:
 	shp2img -m coopers.map -e -79.84496 39.61941 -79.76192 39.66164 -o coopers-rock-south-map.jpg
 
 gpx:
+	rm -f gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_trails.gpx shp/coopers_rock_trails.shp
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_places.gpx shp/coopers_rock_places.shp
 
