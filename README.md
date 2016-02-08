@@ -9,7 +9,10 @@ used to clean up the source data.
 
 ## Coopers Rock State Forest - South map
 
-![Coopers Rock South Map](coopers-rock-state-forest/coopers-rock-south-map.jpg?raw=1 "Coopers Rock South Map")
+![Coopers Rock South Map](coopers-rock-state-forest/coopers-rock-south-topo-map.jpg?raw=1 "Coopers Rock South Map")
+
+Aerial images are also generated but they are not checked into this
+repository due to their size.
 
 
 ## How to compile
@@ -19,18 +22,16 @@ data that you'd like to add to the map:
 
 * Clone the [postgis-data-importer](https://github.com/masneyb/postgis-data-importer)
   project.
-* Download the Lake Lynn, PA/WV and Masontown, WV digital elevation models (DEMs) from
-  the [West Virginia GIS Technical Center](http://wvgis.wvu.edu/) into the
-  postgis-data-importer project so that the 100 foot and 20 foot contour intervals
-  can be generated.
-  - `cd postgis-data-importer/download/us_wv/dem/`
-  - `wget ftp://ftp.wvgis.wvu.edu/pub/Clearinghouse/elevation/3MeterDEM_SAMB_2003_utm83/tiff/zipped/lake_lynn_pa_wv_USGSAndSAMB_2003_utm83_tif.zip`
-  - `wget ftp://ftp.wvgis.wvu.edu/pub/Clearinghouse/elevation/3MeterDEM_SAMB_2003_utm83/tiff/zipped/masontown_wv_USGSAndSAMB_2003_utm83_tif.zip`
+* You will only need the the Lake Lynn, PA/WV and Masontown, WV digital
+  elevation models (DEMs) and aerial imagery. The others can be commented
+  out from the postgis-data-importer import script.
 * Run `cd ../../ && make` in the postgis-data-importer project to create the _wvgis_
   postgresql database.
 * Install mapserver and required font
   - RedHat/Fedora: `sudo dnf install mapserver gnu-free-sans-fonts`
   - Debian/Ubuntu: `sudo apt-get install mapserver-bin ttf-freefont`
-* Change into the relevant subdirectory in this project and build the map:
-  `make`.
-* Note: The GPX files are automatically generated from the SHP files.
+* Change into the relevant subdirectory in this project and edit the 
+  parameters at the top of the Makefile. Namely, you'll need to update
+  the path to the generated Mapserver file for the aerial imagery.
+* Build the map: `make`.
+* Note: The GPX files are dynamically generated from the SHP files.

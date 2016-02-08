@@ -1,3 +1,5 @@
+AERIAL_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/aerial/USDA-2014/2014.map
+
 # List of paths the font file can be installed in. Pick the
 # first one that is present. /bin/false is there for the process
 # to fail if no suitable font could be found.
@@ -8,16 +10,23 @@ FONT=`find \
 	2>/dev/null \
 	| head -n 1`
 
+SOUTH_EXTENT=-79.84496 39.61941 -79.76192 39.66164
+
 DBNAME=wvgis
 
-.PHONY: map gpx clean
+.PHONY: topo aerial gpx clean
 
-all: map gpx
+all: topo gpx aerial
 
-map:
-	cat coopers.map.in | sed s/__DBNAME__/"${DBNAME}"/ > coopers.map
+topo:
+	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m coopers.map -e -79.84496 39.61941 -79.76192 39.66164 -o coopers-rock-south-map.jpg
+	shp2img -m topo.map -e ${SOUTH_EXTENT} -o coopers-rock-south-topo-map.jpg
+
+aerial:
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% > aerial.map
+	echo "opensymbol ${FONT}" > fonts.list
+	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-aerial-map.jpg
 
 gpx:
 	rm -f gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx
@@ -25,4 +34,4 @@ gpx:
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_places.gpx shp/coopers_rock_places.shp
 
 clean:
-	rm -f coopers.map fonts.list
+	rm -f topo.map aerial.map fonts.list
