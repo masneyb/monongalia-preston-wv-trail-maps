@@ -9,10 +9,11 @@ used to clean up the source data.
 
 ## Coopers Rock State Forest - South map
 
-![Coopers Rock South Map](coopers-rock-state-forest/coopers-rock-south-topo-map.jpg?raw=1 "Coopers Rock South Map")
+![Coopers Rock South Topo Map](coopers-rock-state-forest/coopers-rock-south-topo-map.jpg?raw=1 "Coopers Rock South Topo Map")
 
-Aerial images are also generated but they are not checked into this
-repository due to their size.
+An
+[aerial version](coopers-rock-state-forest/coopers-rock-south-aerial-map.jpg?raw=1) of
+the map is also available.
 
 
 ## How to compile
