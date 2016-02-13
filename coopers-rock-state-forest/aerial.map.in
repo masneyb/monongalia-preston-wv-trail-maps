@@ -67,7 +67,27 @@ MAP
     POSITION ll
   END
 
-  INCLUDE "__AERIAL_INCLUDE__"
+  LAYER
+    NAME aerial
+    DATA "PG:host=/var/run/postgresql/ dbname='__DBNAME__' table='wv_aerial_usda_2014' mode=2"
+    OFFSITE 0 0 0
+    STATUS ON
+    TYPE RASTER
+    PROJECTION
+      "+proj=merc"
+      "+a=6378137"
+      "+b=6378137"
+      "+lat_ts=0.0"
+      "+lon_0=0.0"
+      "+x_0=0.0"
+      "+y_0=0"
+      "+k=1.0"
+      "+units=m"
+      "+nadgrids=@null"
+      "+wktext"
+      "+no_defs"
+    END
+  END
 
   LAYER
     NAME wvdnr_managed_lands
