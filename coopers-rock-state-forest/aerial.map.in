@@ -67,8 +67,6 @@ MAP
     POSITION ll
   END
 
-  # Information about the mode=2 option
-  # https://gis.stackexchange.com/questions/26958/gdalinfo-gives-no-georeferencing-information-for-a-postgis-raster
   LAYER
     NAME aerial
     DATA "PG:host=/var/run/postgresql/ dbname='__DBNAME__' table='wv_aerial_usda_2014' mode=2"
