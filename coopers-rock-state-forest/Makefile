@@ -1,3 +1,5 @@
+AERIAL_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/aerial/USDA-2014/2014.map
+
 # List of paths the font file can be installed in. Pick the
 # first one that is present. /bin/false is there for the process
 # to fail if no suitable font could be found.
@@ -22,7 +24,7 @@ topo:
 	shp2img -m topo.map -e ${SOUTH_EXTENT} -o coopers-rock-south-topo-map.jpg
 
 aerial:
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ > aerial.map
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% > aerial.map
 	echo "opensymbol ${FONT}" > fonts.list
 	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-aerial-map.jpg
 

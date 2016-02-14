@@ -31,5 +31,8 @@ data that you'd like to add to the map:
 * Install mapserver and required font
   - RedHat/Fedora: `sudo dnf install mapserver gnu-free-sans-fonts`
   - Debian/Ubuntu: `sudo apt-get install mapserver-bin ttf-freefont`
-* Change into the map subdirectory in this project and build the map: `make`.
+* Change into the relevant subdirectory in this project and edit the 
+  parameters at the top of the Makefile. Namely, you'll need to update
+  the path to the generated Mapserver file for the aerial imagery.
+* Build the map: `make`.
 * Note: The GPX files are dynamically generated from the SHP files.
