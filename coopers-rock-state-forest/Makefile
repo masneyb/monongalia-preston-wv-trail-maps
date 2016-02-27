@@ -14,24 +14,33 @@ SOUTH_EXTENT=-79.84496 39.61941 -79.76192 39.66164
 
 DBNAME=wvgis
 
-.PHONY: topo aerial gpx clean
+.PHONY: clean
 
-all: topo gpx aerial
+all: coopers-rock-south-topo-map.jpg coopers-rock-south-aerial-map.jpg gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx pgsql/coopers_rock_trails.sql pgsql/coopers_rock_places.sql
 
-topo:
+coopers-rock-south-topo-map.jpg: topo.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
 	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
 	echo "opensymbol ${FONT}" > fonts.list
 	shp2img -m topo.map -e ${SOUTH_EXTENT} -o coopers-rock-south-topo-map.jpg
 
-aerial:
+coopers-rock-south-aerial-map.jpg: aerial.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
 	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% > aerial.map
 	echo "opensymbol ${FONT}" > fonts.list
 	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-aerial-map.jpg
 
-gpx:
-	rm -f gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx
+gpx/coopers_rock_trails.gpx: shp/coopers_rock_trails.shp
+	rm -f gpx/coopers_rock_trails.gpx
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_trails.gpx shp/coopers_rock_trails.shp
+
+gpx/coopers_rock_places.gpx: shp/coopers_rock_places.shp
+	rm -f gpx gpx/coopers_rock_places.gpx
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_places.gpx shp/coopers_rock_places.shp
+
+pgsql/coopers_rock_trails.sql: shp/coopers_rock_trails.shp
+	shp2pgsql -s 4326 -g geom shp/coopers_rock_trails.shp coopers_rock_trails > pgsql/coopers_rock_trails.sql
+
+pgsql/coopers_rock_places.sql: shp/coopers_rock_places.shp
+	shp2pgsql -s 4326 -g geom shp/coopers_rock_places.shp coopers_rock_places > pgsql/coopers_rock_places.sql
 
 clean:
 	rm -f topo.map aerial.map fonts.list
