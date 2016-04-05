@@ -16,6 +16,15 @@ An
 the map is also available.
 
 
+## Snake Hill Wildlife Management Area
+
+![Snake Hill Topo Map](snake-hill-wildlife-management-area/snake-hill-topo-map.jpg?raw=1 "Snake Hill Topo Map")
+
+An
+[aerial version](snake-hill-wildlife-management-area/snake-hill-aerial-map.jpg?raw=1) of
+the map is also available.
+
+
 ## How to compile
 
 You can build these maps with the following procedure if you have other
