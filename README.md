@@ -23,8 +23,10 @@ versions of the map are also available.
 ![Snake Hill Topo Map](snake-hill-wildlife-management-area/snake-hill-topo-map.jpg?raw=1 "Snake Hill Topo Map")
 
 An
-[aerial version](snake-hill-wildlife-management-area/snake-hill-aerial-map.jpg?raw=1) of
-the map is also available.
+[aerial](snake-hill-wildlife-management-area/snake-hill-aerial-map.jpg?raw=1)
+and
+[hillshade](snake-hill-wildlife-management-area/snake-hill-hillshade-map.jpg?raw=1)
+versions of the map are also available.
 
 
 ## How to compile

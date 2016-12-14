@@ -1,4 +1,5 @@
 AERIAL_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/aerial/USDA-2014/2014.map
+HILLSHADE_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/hillshade/hillshade.map
 
 # List of paths the font file can be installed in. Pick the
 # first one that is present. /bin/false is there for the process
@@ -16,7 +17,7 @@ DBNAME=wvgis
 
 .PHONY: clean
 
-all: snake-hill-topo-map.jpg snake-hill-aerial-map.jpg gpx/snake_hill_trails.gpx pgsql/snake_hill_trails.sql
+all: snake-hill-topo-map.jpg snake-hill-aerial-map.jpg snake-hill-hillshade-map.jpg gpx/snake_hill_trails.gpx pgsql/snake_hill_trails.sql
 
 snake-hill-topo-map.jpg: topo.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
 	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
@@ -24,9 +25,14 @@ snake-hill-topo-map.jpg: topo.map.in shp/snake_hill_trails.shp shp/snake_hill_tr
 	shp2img -m topo.map -e ${EXTENT} -o snake-hill-topo-map.jpg
 
 snake-hill-aerial-map.jpg: aerial.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% > aerial.map
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ > aerial.map
 	echo "opensymbol ${FONT}" > fonts.list
 	shp2img -m aerial.map -e ${EXTENT} -o snake-hill-aerial-map.jpg
+
+snake-hill-hillshade-map.jpg: aerial.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${HILLSHADE_INCLUDE}% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ > aerial.map
+	echo "opensymbol ${FONT}" > fonts.list
+	shp2img -m aerial.map -e ${EXTENT} -o snake-hill-hillshade-map.jpg
 
 gpx/snake_hill_trails.gpx: shp/snake_hill_trails.shp
 	rm -f gpx/snake_hill_trails.gpx
