@@ -1,4 +1,5 @@
 AERIAL_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/aerial/USDA-2014/2014.map
+HILLSHADE_INCLUDE=/home/masneyb/data/code/postgis-data-importer/download/us_wv/hillshade/hillshade.map
 
 # List of paths the font file can be installed in. Pick the
 # first one that is present. /bin/false is there for the process
@@ -16,7 +17,7 @@ DBNAME=wvgis
 
 .PHONY: clean
 
-all: coopers-rock-south-topo-map.jpg coopers-rock-south-aerial-map.jpg gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx pgsql/coopers_rock_trails.sql pgsql/coopers_rock_places.sql
+all: coopers-rock-south-topo-map.jpg coopers-rock-south-aerial-map.jpg coopers-rock-south-hillshade-map.jpg gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx pgsql/coopers_rock_trails.sql pgsql/coopers_rock_places.sql
 
 coopers-rock-south-topo-map.jpg: topo.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
 	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
@@ -24,16 +25,21 @@ coopers-rock-south-topo-map.jpg: topo.map.in shp/coopers_rock_trails.shp shp/coo
 	shp2img -m topo.map -e ${SOUTH_EXTENT} -o coopers-rock-south-topo-map.jpg
 
 coopers-rock-south-aerial-map.jpg: aerial.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% > aerial.map
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ > aerial.map
 	echo "opensymbol ${FONT}" > fonts.list
 	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-aerial-map.jpg
+
+coopers-rock-south-hillshade-map.jpg: aerial.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
+	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${HILLSHADE_INCLUDE}% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ > aerial.map
+	echo "opensymbol ${FONT}" > fonts.list
+	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-hillshade-map.jpg
 
 gpx/coopers_rock_trails.gpx: shp/coopers_rock_trails.shp
 	rm -f gpx/coopers_rock_trails.gpx
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_trails.gpx shp/coopers_rock_trails.shp
 
 gpx/coopers_rock_places.gpx: shp/coopers_rock_places.shp
-	rm -f gpx gpx/coopers_rock_places.gpx
+	rm -f gpx/coopers_rock_places.gpx
 	ogr2ogr -dsco GPX_USE_EXTENSIONS=true -f GPX gpx/coopers_rock_places.gpx shp/coopers_rock_places.shp
 
 pgsql/coopers_rock_trails.sql: shp/coopers_rock_trails.shp

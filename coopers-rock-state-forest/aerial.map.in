@@ -270,7 +270,7 @@ MAP
     CONNECTIONTYPE postgis
     CONNECTION "dbname=__DBNAME__"
     DATA "geom from wv_20ft_contours"
-    STATUS ON
+    STATUS __CONTOUR_STATUS__
     TYPE LINE
     CLASS
       NAME "20' Contour Lines"
@@ -287,7 +287,7 @@ MAP
     CONNECTIONTYPE postgis
     CONNECTION "dbname=__DBNAME__"
     DATA "geom from wv_100ft_contours"
-    STATUS ON
+    STATUS __CONTOUR_STATUS__
     TYPE LINE
     LABELITEM "ele"
     CLASS
@@ -515,7 +515,7 @@ MAP
     LABELITEM "name"
     CLASS
       STYLE
-        COLOR 0 0 0
+        COLOR __TRAIL_COLOR__
         WIDTH 3
         LINECAP butt
         PATTERN 6 3 3 6 END

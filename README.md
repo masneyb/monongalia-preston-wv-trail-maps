@@ -12,8 +12,10 @@ used to clean up the source data.
 ![Coopers Rock South Topo Map](coopers-rock-state-forest/coopers-rock-south-topo-map.jpg?raw=1 "Coopers Rock South Topo Map")
 
 An
-[aerial version](coopers-rock-state-forest/coopers-rock-south-aerial-map.jpg?raw=1) of
-the map is also available.
+[aerial](coopers-rock-state-forest/coopers-rock-south-aerial-map.jpg?raw=1)
+and
+[hillshade](coopers-rock-state-forest/coopers-rock-south-hillshade-map.jpg?raw=1)
+versions of the map are also available.
 
 
 ## Snake Hill Wildlife Management Area
