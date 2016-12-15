@@ -11,7 +11,7 @@ FONT=`find \
 	2>/dev/null \
 	| head -n 1`
 
-SOUTH_EXTENT=-79.84496 39.61941 -79.76192 39.66164
+EXTENT=-79.84496 39.61941 -79.76192 39.66164
 
 DBNAME=wvgis
 
@@ -19,20 +19,20 @@ DBNAME=wvgis
 
 all: coopers-rock-south-topo-map.jpg coopers-rock-south-aerial-map.jpg coopers-rock-south-hillshade-map.jpg gpx/coopers_rock_trails.gpx gpx/coopers_rock_places.gpx pgsql/coopers_rock_trails.sql pgsql/coopers_rock_places.sql
 
-coopers-rock-south-topo-map.jpg: topo.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
-	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
+coopers-rock-south-topo-map.jpg: ../wv.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__INCLUDE__%% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ | sed s/__POLYGON_STATUS__/ON/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m topo.map -e ${SOUTH_EXTENT} -o coopers-rock-south-topo-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o coopers-rock-south-topo-map.jpg
 
-coopers-rock-south-aerial-map.jpg: aerial.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ > aerial.map
+coopers-rock-south-aerial-map.jpg: ../wv.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed "s%__INCLUDE__%  INCLUDE \"${AERIAL_INCLUDE}\""% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ | sed s/__POLYGON_STATUS__/OFF/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-aerial-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o coopers-rock-south-aerial-map.jpg
 
-coopers-rock-south-hillshade-map.jpg: aerial.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${HILLSHADE_INCLUDE}% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ > aerial.map
+coopers-rock-south-hillshade-map.jpg: ../wv.map.in shp/coopers_rock_trails.shp shp/coopers_rock_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed "s%__INCLUDE__%  INCLUDE \"${HILLSHADE_INCLUDE}\""% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ | sed s/__POLYGON_STATUS__/OFF/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m aerial.map -e ${SOUTH_EXTENT} -o coopers-rock-south-hillshade-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o coopers-rock-south-hillshade-map.jpg
 
 gpx/coopers_rock_trails.gpx: shp/coopers_rock_trails.shp
 	rm -f gpx/coopers_rock_trails.gpx
@@ -49,4 +49,4 @@ pgsql/coopers_rock_places.sql: shp/coopers_rock_places.shp
 	shp2pgsql -s 4326 -g geom shp/coopers_rock_places.shp coopers_rock_places > pgsql/coopers_rock_places.sql
 
 clean:
-	rm -f topo.map aerial.map fonts.list
+	rm -f wv.map fonts.list

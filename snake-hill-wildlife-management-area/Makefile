@@ -19,20 +19,20 @@ DBNAME=wvgis
 
 all: snake-hill-topo-map.jpg snake-hill-aerial-map.jpg snake-hill-hillshade-map.jpg gpx/snake_hill_trails.gpx pgsql/snake_hill_trails.sql
 
-snake-hill-topo-map.jpg: topo.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
-	cat topo.map.in | sed s/__DBNAME__/"${DBNAME}"/ > topo.map
+snake-hill-topo-map.jpg: ../wv.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__INCLUDE__%% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ | sed s/__POLYGON_STATUS__/ON/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m topo.map -e ${EXTENT} -o snake-hill-topo-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o snake-hill-topo-map.jpg
 
-snake-hill-aerial-map.jpg: aerial.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${AERIAL_INCLUDE}% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ > aerial.map
+snake-hill-aerial-map.jpg: ../wv.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed "s%__INCLUDE__%  INCLUDE \"${AERIAL_INCLUDE}\""% | sed "s/__TRAIL_COLOR__/0 0 0/" | sed s/__CONTOUR_STATUS__/ON/ | sed s/__POLYGON_STATUS__/OFF/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m aerial.map -e ${EXTENT} -o snake-hill-aerial-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o snake-hill-aerial-map.jpg
 
-snake-hill-hillshade-map.jpg: aerial.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
-	cat aerial.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed s%__AERIAL_INCLUDE__%${HILLSHADE_INCLUDE}% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ > aerial.map
+snake-hill-hillshade-map.jpg: ../wv.map.in shp/snake_hill_trails.shp shp/snake_hill_trails.shp
+	cat ../wv.map.in | sed s/__DBNAME__/"${DBNAME}"/ | sed "s%__INCLUDE__%  INCLUDE \"${HILLSHADE_INCLUDE}\""% | sed "s/__TRAIL_COLOR__/255 0 0/" | sed s/__CONTOUR_STATUS__/OFF/ | sed s/__POLYGON_STATUS__/OFF/ > wv.map
 	echo "opensymbol ${FONT}" > fonts.list
-	shp2img -m aerial.map -e ${EXTENT} -o snake-hill-hillshade-map.jpg
+	shp2img -m wv.map -e ${EXTENT} -o snake-hill-hillshade-map.jpg
 
 gpx/snake_hill_trails.gpx: shp/snake_hill_trails.shp
 	rm -f gpx/snake_hill_trails.gpx
@@ -42,4 +42,4 @@ pgsql/snake_hill_trails.sql: shp/snake_hill_trails.shp
 	shp2pgsql -s 4326 -g geom shp/snake_hill_trails.shp snake_hill_trails > pgsql/snake_hill_trails.sql
 
 clean:
-	rm -f topo.map aerial.map fonts.list
+	rm -f wv.map fonts.list
